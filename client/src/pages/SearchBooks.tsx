@@ -56,7 +56,7 @@ const SearchBooks = () => {
     }
 
     try {
-      console.log('Saving book data:', addBook);
+      // console.log('Saving book data:', addBook);
       const {data} = await addBook({ variables: { input: {...book}}, }); // Save book to user's account
       
       console.log('Book successfully saved:', data?.addBook);
