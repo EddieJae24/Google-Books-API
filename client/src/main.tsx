@@ -3,6 +3,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import App from './App.jsx'
+// import LoginForm from './components/LoginForm.js'
+// import SignupForm from './components/SignupForm.js'
+
 import SearchBooks from './pages/SearchBooks'
 import SavedBooks from './pages/SavedBooks'
 
@@ -17,6 +20,11 @@ const router = createBrowserRouter([
         element: <SearchBooks />
       }, {
         path: '/saved',
+        element: <SavedBooks />
+      
+      },
+      {
+        path: '/me',
         element: <SavedBooks />
       }
     ]

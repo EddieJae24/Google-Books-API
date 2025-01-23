@@ -1,24 +1,35 @@
 import { useState } from 'react';
 import type { ChangeEvent, FormEvent } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
+import { useMutation } from '@apollo/client';
 
-import { createUser } from '../utils/API';
+import { ADD_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 import type { User } from '../interfaces/User';
 
 // biome-ignore lint/correctness/noEmptyPattern: <explanation>
 const SignupForm = ({}: { handleModalClose: () => void }) => {
   // set initial form state
-  const [userFormData, setUserFormData] = useState<User>({ username: '', email: '', password: '', savedBooks: [] });
+  const [userFormData, setUserFormData] = useState<User>(
+    { username: '', 
+      email: '', 
+      password: '' }
+  );
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
 
+  // set up mutation
+  const [addUser] = useMutation(ADD_USER);
+
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
+
     setUserFormData({ ...userFormData, [name]: value });
   };
+
+  
 
   const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -31,25 +42,21 @@ const SignupForm = ({}: { handleModalClose: () => void }) => {
     }
 
     try {
-      const response = await createUser(userFormData);
+      console.log('Submitting form:', userFormData);
+      const { data } = await addUser(
+        { variables: { input: { ...userFormData } },}
+      );
+      console.log('Response', data);
 
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
+      
+  if (!data?.addUser?.token) throw new Error('Invalid token');
+  Auth.login(data.addUser.token);
 
-      const { token } = await response.json();
-      Auth.login(token);
-    } catch (err) {
+    } 
+    catch (err) {
       console.error(err);
       setShowAlert(true);
     }
-
-    setUserFormData({
-      username: '',
-      email: '',
-      password: '',
-      savedBooks: [],
-    });
   };
 
   return (

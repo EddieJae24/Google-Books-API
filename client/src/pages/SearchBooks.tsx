@@ -35,12 +35,18 @@ const SearchBooks = () => {
       }));
 
       setSearchedBooks(books); // Update state with search results
+      // Clear search input
+      setSearchInput("");
     } catch (err) {
       console.error("Error fetching books:", err);
     }
   };
 
   // Handle saving a book
+
+  
+
+
   const handleSaveBook = async (book: Book) => {
     const token = Auth.getToken(); // Retrieve the user's token
 
@@ -50,12 +56,15 @@ const SearchBooks = () => {
     }
 
     try {
-      const response = await addBook({ variables: { input: book } }); // Save book to user's account
-      if (!response.data) {
-        throw new Error("Something went wrong saving book!");
-      }
-
+      console.log('Saving book data:', addBook);
+      const {data} = await addBook({ variables: { input: {...book}}, }); // Save book to user's account
+      
+      console.log('Book successfully saved:', data?.addBook);
       alert("Book saved successfully!"); // Notify user of success
+    }
+    catch (err) {
+      console.error("Error saving book:", err);
+      alert("Error saving book. Please try again.");
     }
   };
 

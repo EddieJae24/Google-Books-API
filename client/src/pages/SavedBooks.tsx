@@ -5,7 +5,7 @@ import type { Book } from "../interfaces/Book"; // Import the Book interface
 import { QUERY_ME, QUERY_USER } from "../utils/queries"; // GraphQL query to fetch user data
 import { REMOVE_BOOK } from "../utils/mutations"; // GraphQL mutation to remove a book
 import Auth from "../utils/auth";
-import { removeBookId } from "../utils/localStorage";
+
 
 const SavedBooks = () => {
   const { username: userParam } = useParams(); // Get the username from the URL
@@ -29,12 +29,13 @@ const SavedBooks = () => {
   // Handle book deletion
   const handleDeleteBook = async (bookId: string) => {
     try {
+    
        await removeBook({
         variables: { bookId }, // Pass the bookId as a variable to the mutation
       });
 
-      // Update localStorage to remove the book ID
-      removeBookId(bookId);
+  
+      
 
       // Optionally: Display a success message or update the UI
       alert("Book removed successfully!");
