@@ -67,7 +67,24 @@ export const QUERY_ME = gql`
 `;
 
 
-
+// Query to get logged-in user's info (requires token)
+export const GET_ME = gql`
+    query Me {
+      me {
+        _id
+        username
+        email
+        savedBooks {
+          bookId
+          authors
+          title
+          description
+          image
+          link
+        }
+      }
+    }
+  `;
 
 // import { gql } from '@apollo/client';
 

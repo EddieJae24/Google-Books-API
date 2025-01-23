@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { searchGoogleBooks } from "../utils/mutations"; // Import searchGoogleBooks function
-import { addBook } from "../utils/mutations"; // Import addBook mutation
+import {ADD_BOOK } from "../utils/mutations"; // Import addBook mutation
+import { useMutation } from "@apollo/client"; // Hook for executing mutations
 import Auth from "../utils/auth"; // Utility for handling authentication (if implemented)
 import type { Book } from "../interfaces/Book"; // Import Book interface
 
 const SearchBooks = () => {
   const [searchInput, setSearchInput] = useState(""); // For search input
   const [searchedBooks, setSearchedBooks] = useState([]); // For storing search results
+  const [addBook] = useMutation(ADD_BOOK);
 
   // Handle book search
   const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -39,7 +41,7 @@ const SearchBooks = () => {
   };
 
   // Handle saving a book
-  const handleSaveBook = async (book: any) => {
+  const handleSaveBook = async (book: Book) => {
     const token = Auth.getToken(); // Retrieve the user's token
 
     if (!token) {
@@ -48,14 +50,12 @@ const SearchBooks = () => {
     }
 
     try {
-      const response = await addBook(book, token); // Use addBook mutation
-      if (response.errors) {
-        console.error("Error saving book:", response.errors);
-        return;
+      const response = await addBook({ variables: { input: book } }); // Save book to user's account
+      if (!response.data) {
+        throw new Error("Something went wrong saving book!");
       }
-      alert("Book saved!");
-    } catch (err) {
-      console.error("Error saving book:", err);
+
+      alert("Book saved successfully!"); // Notify user of success
     }
   };
 
