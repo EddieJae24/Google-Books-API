@@ -11,7 +11,8 @@ const __dirname = path.dirname(__filename);
 
 import cors from 'cors';
 
-const allowedOrigins = ['https://your-frontend-domain.com']; // Add your frontend's domain
+const allowedOrigins = ['https://google-books-api-frontend.onrender.com']; // Add your frontend's domain
+
 app.use(cors({
     origin: function (origin, callback) {
         // Allow requests with no origin (like mobile apps or CURL)
