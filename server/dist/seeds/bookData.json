@@ -1,0 +1,37 @@
+[
+    {
+        "title": "The Great Gatsby",
+        "authors": ["F. Scott Fitzgerald"],
+        "description": "A classic novel of the Jazz Age, capturing the decadence and excess of the 1920s.",
+        "image": "https://example.com/great-gatsby.jpg",
+        "link": "https://books.google.com/books?id=1"
+    },
+    {
+        "title": "To Kill a Mockingbird",
+        "authors": ["Harper Lee"],
+        "description": "A novel of warmth and humor tackling serious issues of race and injustice in the Deep South.",
+        "image": "https://example.com/to-kill-a-mockingbird.jpg",
+        "link": "https://books.google.com/books?id=2"
+    },
+    {
+        "title": "1984",
+        "authors": ["George Orwell"],
+        "description": "A dystopian novel depicting a totalitarian society under constant surveillance.",
+        "image": "https://example.com/1984.jpg",
+        "link": "https://books.google.com/books?id=3"
+    },
+    {
+        "title": "Pride and Prejudice",
+        "authors": ["Jane Austen"],
+        "description": "A romantic novel that also critiques the societal expectations of 19th-century England.",
+        "image": "https://example.com/pride-and-prejudice.jpg",
+        "link": "https://books.google.com/books?id=4"
+    },
+    {
+        "title": "The Catcher in the Rye",
+        "authors": ["J.D. Salinger"],
+        "description": "A novel following the teenage angst and alienation of Holden Caulfield.",
+        "image": "https://example.com/catcher-in-the-rye.jpg",
+        "link": "https://books.google.com/books?id=5"
+    }
+]
