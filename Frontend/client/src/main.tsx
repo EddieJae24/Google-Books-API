@@ -2,12 +2,12 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import App from './App.jsx'
+import App from './App.js'
 // import LoginForm from './components/LoginForm.js'
 // import SignupForm from './components/SignupForm.js'
 
-import SearchBooks from './pages/SearchBooks'
-import SavedBooks from './pages/SavedBooks'
+import SearchBooks from './pages/SearchBooks.js'
+import SavedBooks from './pages/SavedBooks.js'
 
 const router = createBrowserRouter([
   {
