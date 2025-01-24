@@ -7,7 +7,7 @@
   
   "scripts": {
     "build": "tsc",
-    "server:build": "npm install --prefix ./client && npm run build --prefix ./client && npm install",
+    "server:build": "npm install --prefix ./client && npm run build --prefix ./client && npm install && npm run build",
     "start": "node dist/server.js",
     "seed": "node dist/seeds/seed.js",
     "watch": "nodemon dist/server.js",
