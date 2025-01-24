@@ -8,6 +8,27 @@ import { authenticateToken } from './utils/auth.js';
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+import cors from 'cors';
+
+const allowedOrigins = ['https://your-frontend-domain.com']; // Add your frontend's domain
+app.use(cors({
+    origin: function (origin, callback) {
+        // Allow requests with no origin (like mobile apps or CURL)
+        if (!origin) return callback(null, true);
+
+        if (allowedOrigins.indexOf(origin) === -1) {
+            // Reject requests from unauthorized origins
+            const msg = 'The CORS policy does not allow access from this origin.';
+            return callback(new Error(msg), false);
+        }
+        return callback(null, true);
+    },
+    methods: ['GET', 'POST'], // Allowed HTTP methods
+    credentials: true // Enable cookies/auth if needed
+}));
+
+
 const server = new ApolloServer({
     typeDefs,
     resolvers

@@ -15,7 +15,7 @@ import { Outlet } from 'react-router-dom';
 // import Footer from './components/Footer';
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: 'https://google-books-api-backend1.onrender.com/graphql',
   
 });
 
